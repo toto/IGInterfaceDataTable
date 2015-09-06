@@ -12,6 +12,28 @@
 
 #import <objc/runtime.h>
 
+#if TARGET_OS_WATCH
+
+@implementation NSIndexPath (RowAndItem)
+
++ (instancetype)indexPathForRow:(NSInteger)row inSection:(NSInteger)section
+{
+	return [NSIndexPath indexPathWithIndexes:(const NSUInteger []){ section, row } length:2];
+}
+
+- (NSInteger)section
+{
+	return [self indexAtPosition:0];
+}
+
+- (NSInteger)row
+{
+	return [self indexAtPosition:1];
+}
+
+@end
+
+#endif
 
 @interface IGTableRowData : NSObject
 @property (nonatomic, strong, readonly) NSString *identifier;

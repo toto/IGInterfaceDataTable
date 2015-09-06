@@ -11,6 +11,19 @@
 #import <Foundation/Foundation.h>
 #import <WatchKit/WatchKit.h>
 
+#if TARGET_OS_WATCH
+// watchOS is missing the NSIndexPath (UITableView) category
+
+@interface NSIndexPath (RowAndItem)
+
++ (instancetype)indexPathForRow:(NSInteger)row inSection:(NSInteger)section;
+
+@property (nonatomic, readonly) NSInteger section;
+@property (nonatomic, readonly) NSInteger row;
+
+@end
+
+#endif
 
 @protocol IGInterfaceTableDataSource <NSObject>
 
