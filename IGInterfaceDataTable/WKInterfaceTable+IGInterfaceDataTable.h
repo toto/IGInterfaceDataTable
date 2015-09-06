@@ -11,7 +11,8 @@
 #import <Foundation/Foundation.h>
 #import <WatchKit/WatchKit.h>
 
-// watchOS is missing the NSIndexPath (UITableView) category so we just redeclare it
+#if TARGET_OS_WATCH
+// watchOS is missing the NSIndexPath (UITableView) category
 
 @interface NSIndexPath (RowAndItem)
 
@@ -22,6 +23,7 @@
 
 @end
 
+#endif
 
 @protocol IGInterfaceTableDataSource <NSObject>
 
